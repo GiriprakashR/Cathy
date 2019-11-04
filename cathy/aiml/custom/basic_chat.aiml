@@ -2,13 +2,28 @@
 <!-- basic_chat.aiml -->
 
 
-    <!--
+
     <category>
         <pattern>WHAT ARE YOU</pattern>
         <template>
             I'm a bot, silly!
         </template>
     </category>
-    -->
+    <category><pattern>WHO CREATED YOU</pattern>
+    <template>Dr. Giriprakash (Also Known As) Ash created me.</template>
+    </category>
+    <category>
+        <pattern>WHO ARE YOU</pattern>
+        <template>
+            I'm Asha, an AI created by Dr. Giriprakash (Also Known As) Ash!
+        </template>
+    </category>
+    <category>
+        <pattern>WHO R U</pattern>
+        <template>
+            I'm Asha, an AI created by Dr. Giriprakash (Also Known As) Ash!
+        </template>
+    </category>
+
 
 </aiml>
