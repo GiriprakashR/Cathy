@@ -20,7 +20,7 @@ class ChattyCathy:
     """
     Class that contains all of the bot logic
     """
-    
+
     def __init__(self, channel_name, bot_token):
         """
         Initialize the bot using the Discord token and channel name to chat in.
@@ -64,16 +64,17 @@ class ChattyCathy:
                 print("Empty message received.")
                 return
 
-            print("Message: " + str(message.content))
+            print("Message: " + str(message.author) + "<"+message.author.id+">: " + str(message.content))
 
             if message.content.startswith(BOT_PREFIX):
                 # Pass on to rest of the client commands
                 yield from self.discord_client.process_commands(message)
             else:
-                aiml_response = self.aiml_kernel.respond(message.content)
+                aiml_response = ' %s : ' + self.aiml_kernel.respond(message.content)
+                user_id = '<@!'+message.author.id+'>'
                 yield from self.discord_client.send_typing(message.channel)
                 yield from asyncio.sleep(random.randint(1,3))
-                yield from self.discord_client.send_message(message.channel, aiml_response)
+                yield from self.discord_client.send_message(message.channel, aiml_response % user_id)
 
     def run(self):
         self.discord_client.run(self.token)

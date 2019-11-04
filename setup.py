@@ -6,8 +6,8 @@ setup(
     description='Discord chat bot using AIML artificial intelligence.',
     long_description=open('README.rst').read(),
     url='https://github.com/DevDungeon/ChattyCathy',
-    author='DevDungeon',
-    author_email='nanodano@devdungeon.com',
+    author='GiriprakashR',
+    author_email='giriprakash@outlook.in',
     license='GPL-3.0',
     packages=['cathy'],
     scripts=[
