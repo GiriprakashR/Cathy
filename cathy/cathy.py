@@ -79,7 +79,7 @@ class ChattyCathy:
             self.logger.info("[+] Bot connected to Discord")
             self.logger.info("[*] Name: {}".format(self.discord_client.user.name))
             self.logger.info("[*] ID: {}".format(self.discord_client.user.id))
-            yield from self.discord_client.change_presence(game=discord.Game(name='Chatting with Humans'))
+            yield from self.discord_client.change_presence(game=discord.Game(name='Created by [RIOT]Ash'))
 
         @self.discord_client.event
         @asyncio.coroutine
