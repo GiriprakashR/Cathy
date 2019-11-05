@@ -13,6 +13,7 @@ import sqlite3
 
 
 STARTUP_FILE = "std-startup.xml"
+DEFAULT_PROPS = "bot.properties"
 BOT_PREFIX = ('?', '!')
 SQL_SCHEMA = """CREATE TABLE IF NOT EXISTS
 chat_log (time, server_name, user_id, message, response)"""
@@ -20,7 +21,6 @@ SQL_SCHEMA_2 = """CREATE TABLE IF NOT EXISTS
 users (id, name, first_seen)"""
 SQL_SCHEMA_3 = """CREATE TABLE IF NOT EXISTS
 servers (id, name, first_seen)"""
-
 
 class ChattyCathy:
 
@@ -45,6 +45,14 @@ class ChattyCathy:
         os.chdir(pkg_resources.resource_filename(__name__, ''))  # Change directories to load AIML files properly
         startup_filename = pkg_resources.resource_filename(__name__, STARTUP_FILE)
         self.aiml_kernel.learn(startup_filename)
+
+        properties_file = open(os.sep.join([os.getcwd(), DEFAULT_PROPS]))
+        for line in properties_file:
+            parts = line.split('=')
+            key = parts[0]
+            value = parts[1]
+            self.aiml_kernel.setBotPredicate(key, value)
+
         self.aiml_kernel.respond("LOAD AIML B")
         os.chdir(initial_dir)
         self.logger.info("[+] Done initializing AIML kernel.")
