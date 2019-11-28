@@ -10,7 +10,11 @@ import aiml
 import logging
 import logging.config
 import sqlite3
+import cv2
+import urllib
+from ava.utils.crawler import *
 
+import hashlib
 
 STARTUP_FILE = "std-startup.xml"
 DEFAULT_PROPS = "bot.properties"
@@ -32,7 +36,7 @@ class Ava:
         self.logger = logging.getLogger('cathy_logger')
         self.setup_logging()
         self.logger.info("[+] Initialized logging for bot.")
-
+        self.cache = load_dict_from_file()
         # Setup database
         self.db = sqlite3.connect(self.database)
         self.cursor = self.db.cursor()
@@ -65,6 +69,7 @@ class Ava:
         self.setup_discord_events()
         self.logger.info("[+] Done initializing Discord bot.")
 
+
     def setup_logging(self):
         self.logger.setLevel(logging.INFO)
         log_file_handler = logging.FileHandler(self.log_file)
@@ -93,6 +98,29 @@ class Ava:
         @asyncio.coroutine
         def on_message(message):
             # if message.author.bot or str(message.channel) != self.channel_name:
+            if  (not message.author.bot) or (not str(message.channel).__contains__('whos-that-pokemon')):
+                content = str(message.content)
+                if "cd n" not in content and "discord" not in content and "attachments" not in content:
+                    print("invalid url")
+                    return
+                else:
+                    poke_url = content
+                    self.current_url = poke_url
+                    print("valid image")
+                    img_bytes = self.get_img_bytes(poke_url)
+                    img_hash = hashlib.sha3_256(img_bytes).hexdigest()
+                    print(img_hash)
+                    if img_hash in self.cache:
+                        # print("Pokemon data found in cache!")
+                        text = self.cache[img_hash]
+                        print(text)
+                        yield from self.discord_client.send_message(message.channel, text)
+                        return
+                    response_list = get_pokemon(self.current_url)
+                    print(response_list)
+                    yield from self.discord_client.send_message(message.channel, "Sorry, I don't know this pokemon. :(")
+                    yield from self.discord_client.send_message(message.channel, response_list)
+                return
             if message.author.bot or (not str(message.channel).__contains__(self.channel_name)):
                 return
 
@@ -123,6 +151,26 @@ class Ava:
         self.logger.info("[*] Attempting to run bot...")
         self.discord_client.run(self.token)
         self.logger.info("[*] Bot run.")
+
+    def get_img_bytes(self, url):
+        opener = urllib.request.build_opener()
+        opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+        urllib.request.install_opener(opener)
+        image_name = "temp.jpg"
+        urllib.request.urlretrieve(url, image_name)
+        try:
+            # img = cv2.imread(image_name,
+            #                  cv2.IMREAD_GRAYSCALE)
+            # resized_image = cv2.resize(img, (100, 100))
+            # img_str = cv2.imencode('.png', resized_image)[1].tostring()
+            img = cv2.imread(image_name)
+            img_str = cv2.imencode('.png', img)[1].tostring()
+        except Exception as e:
+            print(str(e))
+        try:
+            os.remove(image_name)
+        except: pass
+        return img_str
 
     def insert_chat_log(self, now, message, aiml_response):
         self.cursor.execute('INSERT INTO chat_log VALUES (?, ?, ?, ?, ?)',
