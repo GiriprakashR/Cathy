@@ -3,7 +3,7 @@ import os
 
 filename = "metadata/pokemon.dat"
 cachename= "metadata/cache_pokemon_names.txt"
-cachename= "cache_pokemon_names_url.txt"
+# cachename= "cache_pokemon_names_url.txt"
 with open(filename) as f:
     content = f.readlines()
 content = [x.strip().lower() for x in content]
@@ -28,7 +28,7 @@ def get_pokemon(poke_url):
     for mon in content:
         if(mon in strip_text):
             # print(mon)
-            target.append("p!catch "+mon)
+            # target.append("p!catch "+mon)
             target.append(mon)
     return target
 
