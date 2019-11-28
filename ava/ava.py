@@ -22,7 +22,7 @@ users (id, name, first_seen)"""
 SQL_SCHEMA_3 = """CREATE TABLE IF NOT EXISTS
 servers (id, name, first_seen)"""
 
-class ChattyCathy:
+class Ava:
 
     def __init__(self, channel_name, bot_token, log_file, database):
         self.log_file = log_file
@@ -87,12 +87,13 @@ class ChattyCathy:
             self.logger.info("[+] Bot connected to Discord")
             self.logger.info("[*] Name: {}".format(self.discord_client.user.name))
             self.logger.info("[*] ID: {}".format(self.discord_client.user.id))
-            yield from self.discord_client.change_presence(game=discord.Game(name='Created by [RIOT]Ash'))
+            yield from self.discord_client.change_presence(game=discord.Game(name='Developed by Giriprak[Ash]'))
 
         @self.discord_client.event
         @asyncio.coroutine
         def on_message(message):
-            if message.author.bot or str(message.channel) != self.channel_name:
+            # if message.author.bot or str(message.channel) != self.channel_name:
+            if message.author.bot or (not str(message.channel).__contains__(self.channel_name)):
                 return
 
             if message.content is None:
