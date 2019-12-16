@@ -92,7 +92,7 @@ class Ava:
             self.logger.info("[+] Bot connected to Discord")
             self.logger.info("[*] Name: {}".format(self.discord_client.user.name))
             self.logger.info("[*] ID: {}".format(self.discord_client.user.id))
-            yield from self.discord_client.change_presence(game=discord.Game(name='Developed by Giriprak[Ash]'))
+            yield from self.discord_client.change_presence(game=discord.Game(name='Developed by Giriprak(Ash)'))
 
         @self.discord_client.event
         @asyncio.coroutine
@@ -140,6 +140,7 @@ class Ava:
                     yield from self.discord_client.send_typing(message.channel)
                     yield from asyncio.sleep(random.randint(1, 3))
                     yield from self.discord_client.send_message(message.channel, aiml_response)
+
                 except discord.HTTPException as e:
                     self.logger.error("[-] Discord HTTP Error: %s" % e)
                 except Exception as e:
