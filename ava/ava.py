@@ -97,55 +97,53 @@ class Ava:
         @self.discord_client.event
         @asyncio.coroutine
         def on_message(message):
-            # if message.author.bot or str(message.channel) != self.channel_name:
-            if  (not message.author.bot) or (not str(message.channel).__contains__('whos-that-pokemon')):
-                content = str(message.content)
-                if "cd n" not in content and "discord" not in content and "attachments" not in content:
-                    print("invalid url")
+            if message.author.bot or (not str(message.channel).__contains__(self.channel_name)
+            and not str(message.channel).__contains__('whos-that-pokemon')):
+                return
+            elif message.content is None:
+                self.logger.error("[-] Empty message received.")
+                return
+            elif (not message.author.bot) and str(message.channel).__contains__('whos-that-pokemon'):
+                str_content = str(message.content)
+                if "cdn" not in str_content and "discord" not in str_content and "attachments" not in str_content:
+                    # print("invalid url")
                     return
                 else:
-                    poke_url = content
+                    poke_url = str_content
                     self.current_url = poke_url
-                    print("valid image")
+                    # print("valid image")
                     img_bytes = self.get_img_bytes(poke_url)
                     img_hash = hashlib.sha3_256(img_bytes).hexdigest()
-                    print(img_hash)
+                    # print(img_hash)
                     if img_hash in self.cache:
                         # print("Pokemon data found in cache!")
                         text = self.cache[img_hash]
-                        print(text)
+                        # print(text)
                         yield from self.discord_client.send_message(message.channel, text)
                         return
                     response_list = get_pokemon(self.current_url)
                     print(response_list)
                     yield from self.discord_client.send_message(message.channel, "Sorry, I don't know this pokemon. :(")
                     yield from self.discord_client.send_message(message.channel, response_list)
-                return
-            if message.author.bot or (not str(message.channel).__contains__(self.channel_name)):
-                return
+                    return
+            elif (not message.author.bot) and str(message.channel).__contains__(self.channel_name):
+                now = datetime.now()
+                try:
+                    aiml_response = self.aiml_kernel.respond(message.content)
+                    aiml_response = aiml_response.replace("://", "")
+                    aiml_response = "%s: %s" % (message.author.mention, aiml_response)
 
-            if message.content is None:
-                self.logger.error("[-] Empty message received.")
-                return
+                    self.logger.info("[%s] (%s) %s: %s\nResponse: %s" %
+                                     (now.isoformat(), message.server.name, message.author, message.content, aiml_response))
+                    self.insert_chat_log(now, message, aiml_response)
 
-            now = datetime.now()
-
-            try:
-                aiml_response = self.aiml_kernel.respond(message.content)
-                aiml_response = aiml_response.replace("://", "")
-                aiml_response = "%s: %s" % (message.author.mention, aiml_response)
-
-                self.logger.info("[%s] (%s) %s: %s\nResponse: %s" %
-                                 (now.isoformat(), message.server.name, message.author, message.content, aiml_response))
-                self.insert_chat_log(now, message, aiml_response)
-
-                yield from self.discord_client.send_typing(message.channel)
-                yield from asyncio.sleep(random.randint(1, 3))
-                yield from self.discord_client.send_message(message.channel, aiml_response)
-            except discord.HTTPException as e:
-                self.logger.error("[-] Discord HTTP Error: %s" % e)
-            except Exception as e:
-                self.logger.error("[-] General Error: %s" % e)
+                    yield from self.discord_client.send_typing(message.channel)
+                    yield from asyncio.sleep(random.randint(1, 3))
+                    yield from self.discord_client.send_message(message.channel, aiml_response)
+                except discord.HTTPException as e:
+                    self.logger.error("[-] Discord HTTP Error: %s" % e)
+                except Exception as e:
+                    self.logger.error("[-] General Error: %s" % e)
 
     def run(self):
         self.logger.info("[*] Attempting to run bot...")
@@ -192,5 +190,6 @@ class Ava:
                 (message.server.id, message.server.name, datetime.now().isoformat()))
 
         self.db.commit()
+
 
 

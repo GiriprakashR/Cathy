@@ -17,7 +17,10 @@ setup(
         'ava': [
             'std-startup.xml',
             'aiml/alice/*.aiml',
-            'aiml/custom/*.aiml'
+            'aiml/custom/*.aiml',
+            'metadata/*.*',
+            'utils/*.*',
+            'bot.properties'
         ],
     },
     zip_safe=False,

@@ -1,0 +1,116 @@
+2019-11-29 03:15:48,263 INFO - [+] Initialized logging for bot.
+2019-11-29 03:15:48,278 INFO - [*] Initializing AIML kernel...
+2019-11-29 03:15:54,918 INFO - [+] Done initializing AIML kernel.
+2019-11-29 03:15:54,919 INFO - [*] Initializing Discord bot...
+2019-11-29 03:15:54,920 INFO - [+] Done initializing Discord bot.
+2019-11-29 03:15:54,920 INFO - [*] Attempting to run bot...
+2019-11-29 03:21:49,764 INFO - [+] Initialized logging for bot.
+2019-11-29 03:21:49,767 INFO - [*] Initializing AIML kernel...
+2019-11-29 03:21:56,449 INFO - [+] Done initializing AIML kernel.
+2019-11-29 03:21:56,449 INFO - [*] Initializing Discord bot...
+2019-11-29 03:21:56,450 INFO - [+] Done initializing Discord bot.
+2019-11-29 03:21:56,450 INFO - [*] Attempting to run bot...
+2019-11-29 03:27:47,012 INFO - [+] Initialized logging for bot.
+2019-11-29 03:27:47,014 INFO - [*] Initializing AIML kernel...
+2019-11-29 03:27:53,801 INFO - [+] Initialized logging for bot.
+2019-11-29 03:27:53,802 INFO - [*] Initializing AIML kernel...
+2019-11-29 03:39:18,229 INFO - [+] Initialized logging for bot.
+2019-11-29 03:39:18,230 INFO - [*] Initializing AIML kernel...
+2019-11-29 03:39:24,306 INFO - [+] Done initializing AIML kernel.
+2019-11-29 03:39:24,306 INFO - [*] Initializing Discord bot...
+2019-11-29 03:39:24,307 INFO - [+] Done initializing Discord bot.
+2019-11-29 03:39:24,307 INFO - [*] Attempting to run bot...
+2019-11-29 03:39:41,555 INFO - [2019-11-29T03:39:41.555813] (Poke Bot 2) $Giriprakash$_aka_Ash#5940: test
+Response: <@!268793494057779201>: This is just a test.
+2019-11-29 03:39:41,561 INFO - [+] Bot connected to Discord
+2019-11-29 03:39:41,561 INFO - [*] Name: Ava
+2019-11-29 03:39:41,561 INFO - [*] ID: 640843015937720321
+2019-11-29 03:43:48,099 INFO - [+] Initialized logging for bot.
+2019-11-29 03:43:48,099 INFO - [*] Initializing AIML kernel...
+2019-11-29 03:43:54,039 INFO - [+] Done initializing AIML kernel.
+2019-11-29 03:43:54,039 INFO - [*] Initializing Discord bot...
+2019-11-29 03:43:54,040 INFO - [+] Done initializing Discord bot.
+2019-11-29 03:43:54,040 INFO - [*] Attempting to run bot...
+2019-11-29 03:44:11,560 INFO - [+] Bot connected to Discord
+2019-11-29 03:44:11,560 INFO - [*] Name: Ava
+2019-11-29 03:44:11,560 INFO - [*] ID: 640843015937720321
+2019-11-29 03:46:10,371 INFO - [+] Initialized logging for bot.
+2019-11-29 03:46:10,372 INFO - [*] Initializing AIML kernel...
+2019-11-29 03:48:46,994 INFO - [+] Initialized logging for bot.
+2019-11-29 03:48:46,997 INFO - [*] Initializing AIML kernel...
+2019-11-29 03:48:53,028 INFO - [+] Done initializing AIML kernel.
+2019-11-29 03:48:53,028 INFO - [*] Initializing Discord bot...
+2019-11-29 03:48:53,029 INFO - [+] Done initializing Discord bot.
+2019-11-29 03:48:53,029 INFO - [*] Attempting to run bot...
+2019-11-29 03:49:11,026 INFO - [+] Bot connected to Discord
+2019-11-29 03:49:11,026 INFO - [*] Name: Ava
+2019-11-29 03:49:11,026 INFO - [*] ID: 640843015937720321
+2019-11-29 03:50:24,263 INFO - [+] Initialized logging for bot.
+2019-11-29 03:50:24,264 INFO - [*] Initializing AIML kernel...
+2019-11-29 03:50:30,289 INFO - [+] Done initializing AIML kernel.
+2019-11-29 03:50:30,289 INFO - [*] Initializing Discord bot...
+2019-11-29 03:50:30,290 INFO - [+] Done initializing Discord bot.
+2019-11-29 03:50:30,290 INFO - [*] Attempting to run bot...
+2019-11-29 03:50:36,076 INFO - [2019-11-29T03:50:36.074403] (MidFail-YT) $Giriprakash$_aka_Ash#5940: tes
+Response: <@!268793494057779201>: I really enjoy speaking with you and look forward to chatting again.
+2019-11-29 03:50:47,515 INFO - [2019-11-29T03:50:47.514917] (MidFail-YT) $Giriprakash$_aka_Ash#5940: hi
+Response: <@!268793494057779201>: Hi there!
+2019-11-29 03:50:47,521 INFO - [2019-11-29T03:50:47.521391] (MidFail-YT) $Giriprakash$_aka_Ash#5940: hello
+Response: <@!268793494057779201>: How are you?
+2019-11-29 03:50:47,525 INFO - [+] Bot connected to Discord
+2019-11-29 03:50:47,525 INFO - [*] Name: Ava
+2019-11-29 03:50:47,525 INFO - [*] ID: 640843015937720321
+2019-11-29 03:50:54,452 INFO - [2019-11-29T03:50:54.452508] (MidFail-YT) $Giriprakash$_aka_Ash#5940: good
+Response: <@!268793494057779201>: Thanks for the compliment.
+2019-11-29 03:51:01,549 INFO - [2019-11-29T03:51:01.549750] (MidFail-YT) $Giriprakash$_aka_Ash#5940: how about you?
+Response: <@!268793494057779201>: Me?
+2019-11-29 03:51:06,873 INFO - [2019-11-29T03:51:06.873347] (MidFail-YT) $Giriprakash$_aka_Ash#5940: yes
+Response: <@!268793494057779201>: Blimey.
+2019-11-29 03:51:14,522 INFO - [2019-11-29T03:51:14.522642] (MidFail-YT) $Giriprakash$_aka_Ash#5940: oh
+Response: <@!268793494057779201>: I don't judge people.
+2019-11-29 03:51:29,203 INFO - [2019-11-29T03:51:29.203510] (SRB (RajGaming, 90sGamer, Ditto, Troll PUBG) YT) $Giriprakash$_aka_Ash#5940: test
+Response: <@!268793494057779201>: This is just a test.
+2019-11-29 03:51:31,100 INFO - [2019-11-29T03:51:31.100038] (SRB (RajGaming, 90sGamer, Ditto, Troll PUBG) YT) $Giriprakash$_aka_Ash#5940: wake
+Response: <@!268793494057779201>: Are you a student?
+2019-11-29 03:51:37,942 INFO - [2019-11-29T03:51:37.941822] (SRB (RajGaming, 90sGamer, Ditto, Troll PUBG) YT) $Giriprakash$_aka_Ash#5940: no
+Response: <@!268793494057779201>: What is your profession?
+2019-11-29 03:51:48,414 INFO - [2019-11-29T03:51:48.413911] (SRB (RajGaming, 90sGamer, Ditto, Troll PUBG) YT) $Giriprakash$_aka_Ash#5940: software engineer
+Response: <@!268793494057779201>: Free software will always be with us.
+2019-11-29 03:51:56,450 INFO - [2019-11-29T03:51:56.449187] (SRB (RajGaming, 90sGamer, Ditto, Troll PUBG) YT) $Giriprakash$_aka_Ash#5940: lo
+Response: <@!268793494057779201>: I like the way you talk.
+2019-11-29 03:51:58,428 INFO - [2019-11-29T03:51:58.428447] (SRB (RajGaming, 90sGamer, Ditto, Troll PUBG) YT) $Giriprakash$_aka_Ash#5940: lol
+Response: <@!268793494057779201>: I'm glad you find this amusing.
+2019-11-29 03:56:41,513 INFO - [+] Initialized logging for bot.
+2019-11-29 03:56:41,518 INFO - [*] Initializing AIML kernel...
+2019-11-29 03:56:47,476 INFO - [+] Done initializing AIML kernel.
+2019-11-29 03:56:47,476 INFO - [*] Initializing Discord bot...
+2019-11-29 03:56:47,477 INFO - [+] Done initializing Discord bot.
+2019-11-29 03:56:47,477 INFO - [*] Attempting to run bot...
+2019-11-29 03:57:03,197 INFO - [+] Bot connected to Discord
+2019-11-29 03:57:03,197 INFO - [*] Name: Ava
+2019-11-29 03:57:03,197 INFO - [*] ID: 640843015937720321
+2019-11-29 03:57:14,024 INFO - [2019-11-29T03:57:14.024618] (MidFail-YT) $Giriprakash$_aka_Ash#5940: hey there
+Response: <@!268793494057779201>: Hi there!
+2019-11-29 03:57:29,089 INFO - [2019-11-29T03:57:29.089484] (MidFail-YT) $Giriprakash$_aka_Ash#5940: Thanks for assisting to catch the pokemons
+Response: <@!268793494057779201>: Don't mention it.
+2019-11-29 04:43:36,753 INFO - [+] Initialized logging for bot.
+2019-11-29 04:43:36,757 INFO - [*] Initializing AIML kernel...
+2019-11-29 04:43:42,703 INFO - [+] Done initializing AIML kernel.
+2019-11-29 04:43:42,704 INFO - [*] Initializing Discord bot...
+2019-11-29 04:43:42,706 INFO - [+] Done initializing Discord bot.
+2019-11-29 04:43:42,706 INFO - [*] Attempting to run bot...
+2019-11-29 04:43:57,868 INFO - [+] Bot connected to Discord
+2019-11-29 04:43:57,869 INFO - [*] Name: Ava
+2019-11-29 04:43:57,869 INFO - [*] ID: 640843015937720321
+2019-11-29 04:44:03,424 INFO - [2019-11-29T04:44:03.424009] (Poke Bot 1) $Giriprakash$_aka_Ash#5940: test
+Response: <@!268793494057779201>: This is just a test.
+2019-11-29 04:44:26,528 INFO - [2019-11-29T04:44:26.528234] (Poke Bot 1) $Giriprakash$_aka_Ash#5940: hi
+Response: <@!268793494057779201>: Hi there!
+2019-11-29 04:46:02,582 INFO - [2019-11-29T04:46:02.582548] (Poke Bot 1) $Giriprakash$_aka_Ash#5940: hi
+Response: <@!268793494057779201>: How are you?
+2019-11-29 04:46:18,653 INFO - [2019-11-29T04:46:18.653508] (Poke Bot 1) $Giriprakash$_aka_Ash#5940: your name
+Response: <@!268793494057779201>: Ava
+2019-11-29 04:46:33,141 INFO - [2019-11-29T04:46:33.139101] (Poke Bot 1) $Giriprakash$_aka_Ash#5940: ava
+Response: <@!268793494057779201>: I'm so happy we are having this conversation.
+2019-11-29 04:50:50,119 INFO - [2019-11-29T04:50:50.118814] (Poke Bot 1) $Giriprakash$_aka_Ash#5940: hi
+Response: <@!268793494057779201>: Hi there!
