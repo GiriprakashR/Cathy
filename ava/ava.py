@@ -92,7 +92,7 @@ class Ava:
             self.logger.info("[+] Bot connected to Discord")
             self.logger.info("[*] Name: {}".format(self.discord_client.user.name))
             self.logger.info("[*] ID: {}".format(self.discord_client.user.id))
-            yield from self.discord_client.change_presence(game=discord.Game(name='Developed by Giriprak[Ash]'))
+            yield from self.discord_client.change_presence(game=discord.Game(name='Developed by Giriprak(Ash)'))
 
         @self.discord_client.event
         @asyncio.coroutine
