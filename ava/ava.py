@@ -13,12 +13,13 @@ import sqlite3
 import cv2
 import urllib
 from ava.utils.crawler import *
-
+import json
 import hashlib
 
 STARTUP_FILE = "std-startup.xml"
 DEFAULT_PROPS = "bot.properties"
-BOT_PREFIX = ('?', '!')
+# BOT_PREFIX = ('?', '!')
+BOT_PREFIX = '?h'
 SQL_SCHEMA = """CREATE TABLE IF NOT EXISTS
 chat_log (time, server_name, user_id, message, response)"""
 SQL_SCHEMA_2 = """CREATE TABLE IF NOT EXISTS
@@ -98,7 +99,7 @@ class Ava:
         @asyncio.coroutine
         def on_message(message):
             if message.author.bot or (not str(message.channel).__contains__(self.channel_name)
-            and not str(message.channel).__contains__('whos-that-pokemon')):
+            and not str(message.channel).__contains__('whos-that-pokemon') and not str(message.channel).__contains__('user-with-bot')):
                 return
             elif message.content is None:
                 self.logger.error("[-] Empty message received.")
@@ -145,6 +146,50 @@ class Ava:
                     self.logger.error("[-] Discord HTTP Error: %s" % e)
                 except Exception as e:
                     self.logger.error("[-] General Error: %s" % e)
+            elif (not message.author.bot) and str(message.channel).__contains__('user-with-bot') and message.content.startswith(BOT_PREFIX):
+                str_content = str(message.content)
+                self.logger.info("Message: " + str(message.author) + "<" + message.author.id +">: " + str_content)
+                search_text = str_content.strip(BOT_PREFIX)
+                self.logger.info(search_text)
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+                    'From': 'giriprakash93@gmail.com'
+                }
+                url_stack = "https://api.stackexchange.com/2.2/search?pagesize=10&order=desc&sort=votes&intitle="+search_text+"&site=stackoverflow&key=3TSdGALFKv4JANdjti2Axw(("
+                url_reddit = "https://www.reddit.com/search.json?q="+search_text
+                response_reddit = requests.get(url_reddit, headers=headers, allow_redirects=True)
+                resp_string = response_reddit.text
+                json_obj = json.loads(resp_string)
+                items_list = json_obj['data']['children']
+                results_length_reddit = len(items_list)
+                self.logger.info("Reddit => results length: "+str(results_length_reddit))
+                yield from self.discord_client.send_message(message.channel, "__*** " +
+                                                            # str(results_length_reddit) +
+                                                            "10 results found from Reddit Websearch! ***__")
+                for item in items_list[0:10]:
+                    link_ = "**" + "\n" + item['data']['title'] + "**" + "\n" + item['data']['url']
+                    # print(link_)
+                    yield from self.discord_client.send_message(message.channel, link_)
+
+                response_stack = requests.get(url_stack, headers=headers, allow_redirects=True)
+                resp_string = response_stack.text
+                json_obj = json.loads(resp_string)
+                items_list = json_obj['items']
+                quota_max = json_obj['quota_max']
+                quota_rem = json_obj['quota_remaining']
+                has_more = json_obj['has_more']
+                results_length_stack = len(items_list)
+                self.logger.info("Stack OF => results length: " + str(results_length_stack) + "\n" + "Has more: " + str(has_more))
+                self.logger.info("Quota max: " + str(quota_max) + "\n" + "Quota Remaining: " + str(quota_rem))
+                yield from self.discord_client.send_message(message.channel, "__*** " + str(results_length_stack) + " results found from stack overflow! ***__")
+                for item in items_list:
+                    link_ = "**" + "\n" + item['title'] + "**" + "\n" + item['link']
+                    # print(link_)
+                    yield from self.discord_client.send_message(message.channel, link_)
+                if results_length_stack == 0 and results_length_reddit == 0:
+                    yield from self.discord_client.send_message(message.channel, "No Results found! Please refine your search")
+                # yield from self.discord_client.send_message(message.channel, "Ack")
+                # yield from self.discord_client.process_commands(message)
 
     def run(self):
         self.logger.info("[*] Attempting to run bot...")
