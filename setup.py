@@ -1,20 +1,20 @@
 from setuptools import setup
 
 setup(
-    name='ava',
+    name='alice',
     version='2.0.1',
     description='Discord chat bot using AIML artificial intelligence.',
     url='https://github.com/DevDungeon/ChattyCathy',
-    author='DevDungeon',
+    author='Giriprakash',
     author_email='giriprakash@outlook.in',
     license='GPL-3.0',
-    packages=['ava'],
+    packages=['alice'],
     scripts=[
-        'bin/ava',
-        'bin/ava.bat',
+        'bin/alice',
+        'bin/alice.bat',
     ],
     package_data={
-        'ava': [
+        'alice': [
             'std-startup.xml',
             'aiml/alice/*.aiml',
             'aiml/custom/*.aiml',

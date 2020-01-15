@@ -4,18 +4,18 @@
 Discord chat bot using AIML artificial intelligence
 
 Usage:
-  ava <channel> <token> <logfile> <database>
+  alice <channel> <token> <logfile> <database>
 
 Options:
   <channel>     Name of channel to chat in. E.g. "general"
   <token>       Bot's Discord API token
-  <logfile>     Path to log file. E.g. "$HOME/ava.log"
-  <database>    Path to database file. E.g. "$HOME/ava.sqlite"
+  <logfile>     Path to log file. E.g. "$HOME/alice.log"
+  <database>    Path to database file. E.g. "$HOME/alice.sqlite"
   -h --help     Show this screen.
 """
 
 from docopt import docopt
-from ava.ava import Ava
+from alice.alice import Alice
 
 args = docopt(__doc__)
 
@@ -24,5 +24,5 @@ print('Token: %s' % args['<token>'])
 print('Log file: %s' % args['<logfile>'])
 print('Database: %s' % args['<database>'])
 
-bot = Ava(args['<channel>'], args['<token>'], args['<logfile>'], args['<database>'])
+bot = Alice(args['<channel>'], args['<token>'], args['<logfile>'], args['<database>'])
 bot.run()

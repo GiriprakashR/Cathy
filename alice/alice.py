@@ -12,7 +12,7 @@ import logging.config
 import sqlite3
 import cv2
 import urllib
-from ava.utils.crawler import *
+from alice.utils.crawler import *
 import json
 import hashlib
 
@@ -27,7 +27,7 @@ users (id, name, first_seen)"""
 SQL_SCHEMA_3 = """CREATE TABLE IF NOT EXISTS
 servers (id, name, first_seen)"""
 
-class Ava:
+class Alice:
 
     def __init__(self, channel_name, bot_token, log_file, database):
         self.log_file = log_file
@@ -98,9 +98,14 @@ class Ava:
         @self.discord_client.event
         @asyncio.coroutine
         def on_message(message):
+
             if message.author.bot or (not str(message.channel).__contains__(self.channel_name)
-            and not str(message.channel).__contains__('whos-that-pokemon') and not str(message.channel).__contains__('user-with-bot')):
+            and not str(message.channel).__contains__('whos-that-pokemon') and not str(message.channel).__contains__('user-with-bot')
+            and not str(message.channel).__contains__('🔰-ʟɪᴠᴇ-ꜱᴛʀᴇᴀᴍ')):
                 return
+                # Special case for sending push notification
+            elif str(message.channel).__contains__('🔰-ʟɪᴠᴇ-ꜱᴛʀᴇᴀᴍ'):
+                print(message.content)
             elif message.content is None:
                 self.logger.error("[-] Empty message received.")
                 return
