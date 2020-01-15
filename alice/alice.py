@@ -146,7 +146,7 @@ class Alice:
                     yield from self.discord_client.send_typing(message.channel)
                     yield from asyncio.sleep(random.randint(1, 3))
                     yield from self.discord_client.send_message(message.channel, aiml_response)
-                    # return
+
                 except discord.HTTPException as e:
                     self.logger.error("[-] Discord HTTP Error: %s" % e)
                 except Exception as e:
@@ -241,5 +241,6 @@ class Alice:
                 (message.server.id, message.server.name, datetime.now().isoformat()))
 
         self.db.commit()
+
 
 

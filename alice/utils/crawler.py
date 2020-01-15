@@ -87,3 +87,4 @@ def get_pokedata_from_file(data):
             dicts_from_file.update(eval(line))
     inf.close()
     return dicts_from_file
+
