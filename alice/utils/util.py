@@ -7,7 +7,8 @@ import json
 import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
-aliceHome = "..\\alice\\metadata\\"
+aliceHome = "../alice/metadata/"
+# aliceHome = "/metadata/"
 # pokemon_name_list = "pokemon.dat"
 # cachename= "cache_pokemon_names.txt"
 fav_pokemon_name_list = aliceHome + "pokemon_fav.dat"
