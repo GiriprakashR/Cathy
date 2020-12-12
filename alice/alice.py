@@ -195,10 +195,10 @@ class Alice:
                     aiml_response = aiml_response.replace("://", "")
                     aiml_response = "%s: %s" % (message.author.mention, aiml_response)
 
-                    self.logger.info("[%s] (%s) %s: %s\nResponse: %s" %
-                                     (now.isoformat(), message.server.name, message.author, message.content,
-                                      aiml_response))
-                    self.insert_chat_log(now, message, aiml_response)
+                    # self.logger.info("[%s] (%s) %s: %s\nResponse: %s" %
+                    #                  (now.isoformat(), message.server.name, message.author, message.content,
+                    #                   aiml_response))
+                    # self.insert_chat_log(now, message, aiml_response)
 
                     # await self.discord_client.send_typing(message.channel)
                     # await asyncio.sleep(random.randint(1, 3))
