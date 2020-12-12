@@ -7,8 +7,13 @@ import json
 import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
+<<<<<<< HEAD
 # aliceHome = "../alice/metadata/"
 aliceHome = "metadata/"
+=======
+aliceHome = "../alice/metadata/"
+# aliceHome = "/metadata/"
+>>>>>>> 2aceb4204566e76706be2f9318f4958189a62fb9
 # pokemon_name_list = "pokemon.dat"
 # cachename= "cache_pokemon_names.txt"
 fav_pokemon_name_list = aliceHome + "pokemon_fav.dat"
