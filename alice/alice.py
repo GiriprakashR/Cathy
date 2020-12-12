@@ -9,7 +9,7 @@ import aiml
 import logging
 import logging.config
 import sqlite3
-import cv2
+# import cv2
 import urllib
 from alice.utils.util import *
 import json
@@ -119,16 +119,16 @@ class Alice:
     def setup_discord_events(self):
 
         @self.discord_client.event
-        @asyncio.coroutine
-        def on_ready():
+        # @asyncio.coroutine
+        async def on_ready():
             self.logger.info("[+] Bot connected to Discord")
             self.logger.info("[*] Name: {}".format(self.discord_client.user.name))
             self.logger.info("[*] ID: {}".format(self.discord_client.user.id))
-            yield from self.discord_client.change_presence(game=discord.Game(name='Developed by Giriprak(Ash)'))
+            await self.discord_client.change_presence(activity=discord.Game(name='Developed by Giriprak(Ash)'))
 
         @self.discord_client.event
-        @asyncio.coroutine
-        def on_message(message):
+        # @asyncio.coroutine
+        async def on_message(message):
 
             if message.author.bot or (not str(message.channel).__contains__(self.channel_name)
                                       and not str(message.channel).__contains__('whos-that-pokemon') and not str(
@@ -141,53 +141,53 @@ class Alice:
             elif message.content is None:
                 self.logger.error("[-] Empty message received.")
                 return
-            elif (not message.author.bot) and str(message.channel).__contains__('whos-that-pokemon'):
-                str_content = str(message.content)
-                # if "cdn" not in str_content and "discord" not in str_content and "attachments" not in str_content:
-                if "jpg" not in str_content and "png" not in str_content:
-                    # print("invalid url")
-                    return
-                else:
-                    poke_url = self.parseUrl(str_content)
-                    self.current_url = poke_url
-                    # print("valid image")
-                    # img_bytes = self.get_img_bytes(poke_url)
-                    # img_hash = hashlib.md5(img_bytes).hexdigest()
-
-                    # Deprecated
-                    # headers = {
-                    #     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
-                    # r = requests.get(POKE_API+poke_url, headers=headers)
-                    # print(r.json()['data'])
-
-                    # yield from self.discord_client.send_message(message.channel, r.json()['data'])
-                    # return
-                    hash = get_hash_from_url(poke_url)
-                    if hash in self.cache:
-                        pokemon_name = self.cache[hash]
-                    else:
-                        print("Hash not present in cache: " + hash)
-                        possible_name = "whoops, I don't know!"
-                        similarity = 0.8
-                        for pokemon_hash in self.cache:
-                            similarity_new = SequenceMatcher(None, pokemon_hash, hash)
-                            if float(similarity_new.ratio()) > float(similarity):
-                                similarity = float(similarity_new.ratio())
-                                possible_name = self.cache[pokemon_hash]
-                                print("Possible pokemon found in cache: " + possible_name)
-                        pokemon_name = possible_name
-                    yield from self.discord_client.send_message(message.channel, pokemon_name)
-                    # if img_hash in self.cache:
-                    #     # print("Pokemon data found in cache!")
-                    #     text = self.cache[img_hash]
-                    #     # print(text)
-                    #     yield from self.discord_client.send_message(message.channel, text)
-                    #     return
-                    # response_list = get_pokemon(self.current_url)
-                    # print(response_list)
-                    # yield from self.discord_client.send_message(message.channel, "whoops, I don't know!")
-                    # yield from self.discord_client.send_message(message.channel, response_list)
-                    return
+            # elif (not message.author.bot) and str(message.channel).__contains__('whos-that-pokemon'):
+            #     str_content = str(message.content)
+            #     # if "cdn" not in str_content and "discord" not in str_content and "attachments" not in str_content:
+            #     if "jpg" not in str_content and "png" not in str_content:
+            #         # print("invalid url")
+            #         return
+            #     else:
+            #         poke_url = self.parseUrl(str_content)
+            #         self.current_url = poke_url
+            #         # print("valid image")
+            #         # img_bytes = self.get_img_bytes(poke_url)
+            #         # img_hash = hashlib.md5(img_bytes).hexdigest()
+            #
+            #         # Deprecated
+            #         # headers = {
+            #         #     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
+            #         # r = requests.get(POKE_API+poke_url, headers=headers)
+            #         # print(r.json()['data'])
+            #
+            #         # yield from self.discord_client.send_message(message.channel, r.json()['data'])
+            #         # return
+            #         hash = get_hash_from_url(poke_url)
+            #         if hash in self.cache:
+            #             pokemon_name = self.cache[hash]
+            #         else:
+            #             print("Hash not present in cache: " + hash)
+            #             possible_name = "whoops, I don't know!"
+            #             similarity = 0.8
+            #             for pokemon_hash in self.cache:
+            #                 similarity_new = SequenceMatcher(None, pokemon_hash, hash)
+            #                 if float(similarity_new.ratio()) > float(similarity):
+            #                     similarity = float(similarity_new.ratio())
+            #                     possible_name = self.cache[pokemon_hash]
+            #                     print("Possible pokemon found in cache: " + possible_name)
+            #             pokemon_name = possible_name
+            #         await self.discord_client.send_message(message.channel, pokemon_name)
+            #         # if img_hash in self.cache:
+            #         #     # print("Pokemon data found in cache!")
+            #         #     text = self.cache[img_hash]
+            #         #     # print(text)
+            #         #     yield from self.discord_client.send_message(message.channel, text)
+            #         #     return
+            #         # response_list = get_pokemon(self.current_url)
+            #         # print(response_list)
+            #         # yield from self.discord_client.send_message(message.channel, "whoops, I don't know!")
+            #         # yield from self.discord_client.send_message(message.channel, response_list)
+            #         return
             elif (not message.author.bot) and str(message.channel).__contains__(self.channel_name):
                 now = datetime.now()
                 try:
@@ -200,9 +200,9 @@ class Alice:
                                       aiml_response))
                     self.insert_chat_log(now, message, aiml_response)
 
-                    yield from self.discord_client.send_typing(message.channel)
-                    yield from asyncio.sleep(random.randint(1, 3))
-                    yield from self.discord_client.send_message(message.channel, aiml_response)
+                    # await self.discord_client.send_typing(message.channel)
+                    # await asyncio.sleep(random.randint(1, 3))
+                    await message.channel.send(aiml_response)
 
                 except discord.HTTPException as e:
                     self.logger.error("[-] Discord HTTP Error: %s" % e)
@@ -226,13 +226,13 @@ class Alice:
                 items_list = json_obj['data']['children']
                 results_length_reddit = len(items_list)
                 self.logger.info("Reddit => results length: " + str(results_length_reddit))
-                yield from self.discord_client.send_message(message.channel, "__*** " +
+                await message.channel.send("__*** " +
                                                             # str(results_length_reddit) +
                                                             "10 results found from Reddit Websearch! ***__")
                 for item in items_list[0:10]:
                     link_ = "**" + "\n" + item['data']['title'] + "**" + "\n" + item['data']['url']
                     # print(link_)
-                    yield from self.discord_client.send_message(message.channel, link_)
+                    await message.channel.send(link_)
 
                 response_stack = requests.get(url_stack, headers=headers, allow_redirects=True)
                 resp_string = response_stack.text
@@ -245,15 +245,14 @@ class Alice:
                 self.logger.info(
                     "Stack OF => results length: " + str(results_length_stack) + "\n" + "Has more: " + str(has_more))
                 self.logger.info("Quota max: " + str(quota_max) + "\n" + "Quota Remaining: " + str(quota_rem))
-                yield from self.discord_client.send_message(message.channel, "__*** " + str(
+                await message.channel.send("__*** " + str(
                     results_length_stack) + " results found from stack overflow! ***__")
                 for item in items_list:
                     link_ = "**" + "\n" + item['title'] + "**" + "\n" + item['link']
                     # print(link_)
-                    yield from self.discord_client.send_message(message.channel, link_)
+                    await message.channel.send(link_)
                 if results_length_stack == 0 and results_length_reddit == 0:
-                    yield from self.discord_client.send_message(message.channel,
-                                                                "No Results found! Please refine your search")
+                    await message.channel.send("No Results found! Please refine your search")
                 # yield from self.discord_client.send_message(message.channel, "Ack")
                 # yield from self.discord_client.process_commands(message)
 
