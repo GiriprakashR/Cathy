@@ -211,7 +211,7 @@ class Alice:
             elif (not message.author.bot) and str(message.channel).__contains__(
                     'user-with-bot') and message.content.startswith(BOT_PREFIX):
                 str_content = str(message.content)
-                self.logger.info("Message: " + str(message.author) + "<" + message.author.id + ">: " + str_content)
+                self.logger.info("Message: " + str(message.author) + "<" + str(message.author.id) + ">: " + str_content)
                 search_text = str_content.strip(BOT_PREFIX)
                 self.logger.info(search_text)
                 headers = {
