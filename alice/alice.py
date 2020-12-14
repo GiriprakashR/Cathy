@@ -28,6 +28,11 @@ users (id, name, first_seen)"""
 SQL_SCHEMA_3 = """CREATE TABLE IF NOT EXISTS
 servers (id, name, first_seen)"""
 
+PUBLISH_CHANNEL_PREFIX = '🔰-ʟɪᴠᴇ-ꜱᴛʀᴇᴀᴍ'
+GLOBAL_CHANNEL_ID = "487967837747544086" #global-chat
+# GLOBAL_CHANNEL_ID = "787935003064926220" #admin-testing
+BOT_ID = '699108434527780915'
+PUBLISH_PREFIX = "[Auto publish by "
 
 class Alice:
 
@@ -124,7 +129,9 @@ class Alice:
             self.logger.info("[+] Bot connected to Discord")
             self.logger.info("[*] Name: {}".format(self.discord_client.user.name))
             self.logger.info("[*] ID: {}".format(self.discord_client.user.id))
-            await self.discord_client.change_presence(activity=discord.Game(name='Developed by Giriprak(Ash)'))
+            activity = discord.Activity(name='Giriprak(Ash) commands', type=discord.ActivityType.listening)
+            await self.discord_client.change_presence(activity=activity)
+            # await self.discord_client.change_presence(activity=discord.Game(name='Developed by Giriprak(Ash)'))
 
         @self.discord_client.event
         # @asyncio.coroutine
@@ -133,11 +140,23 @@ class Alice:
             if message.author.bot or (not str(message.channel).__contains__(self.channel_name)
                                       and not str(message.channel).__contains__('whos-that-pokemon') and not str(
                         message.channel).__contains__('user-with-bot')
-                                      and not str(message.channel).__contains__('🔰-ʟɪᴠᴇ-ꜱᴛʀᴇᴀᴍ')):
+                                      and not str(message.channel).__contains__(PUBLISH_CHANNEL_PREFIX)):
                 return
                 # Special case for sending push notification
-            elif str(message.channel).__contains__('🔰-ʟɪᴠᴇ-ꜱᴛʀᴇᴀᴍ'):
-                print(message.content)
+            elif str(message.channel).__contains__(PUBLISH_CHANNEL_PREFIX):
+                user = self.discord_client.get_user(int(BOT_ID))
+
+                message.content = PUBLISH_PREFIX + user.mention + " ]\n " + message.content
+                # message.content = "default_content"
+
+                # channel = self.discord_client.get_channel(int(GLOBAL_CHANNEL_ID))
+                await message.publish()
+                # if message.embeds:
+                #     await channel.send(message.content, embed=message.embeds)
+                # else:
+                # await channel.send(message.content)
+                # print(message.content)
+
             elif message.content is None:
                 self.logger.error("[-] Empty message received.")
                 return
